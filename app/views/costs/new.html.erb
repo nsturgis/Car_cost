@@ -1,0 +1,13 @@
+<h2> Find Costs: </h2>
+<%= form_for [@car, @cost] do |f| %>
+<p>
+<%= f.label :down_payment %>
+<%= f.text_field :down_payment %><br>
+<%= f.label :interest_rate %>
+<%= f.text_field :interest_rate %>
+<br>
+<%= f.label :time_horizon_in_years %>
+<%= f.text_field :time_horizon_in_years %>
+</p>
+<%= f.submit %>
+<% end %>

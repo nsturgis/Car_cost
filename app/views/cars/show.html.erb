@@ -1,0 +1,9 @@
+<h1> <%= @car.brand %>, <%= @car.model %>, <%= @car.year %> </h1>
+<h4>Price: <%= @car.price %> </h4>
+<h4>Fuel Type: <%= @car.fuel_type %> </h4>
+<h4>Miles Per Gallon: <%= @car.MPG %>   </h4>
+
+<h3> Costs: </h3>
+
+
+<h2> <%= link_to 'Find Costs', new_car_cost_path(@car) %> </h2>
