@@ -1,9 +1,7 @@
-<h2> Look @ all deez whips </h2>
+<h2> All of Our Cars </h2>
 
-<ul>
 <% @cars.each do |car| %>
-<li>
-<%= link_to "#{car.brand},#{car.model} #{car.year}", car_path(car) %>
-</li>
+<div class="panel callout radius">
+<h4><%= link_to "#{car.brand},#{car.model} #{car.year}", car_path(car) %></h4>
+</div>
 <% end %>
-</ul>

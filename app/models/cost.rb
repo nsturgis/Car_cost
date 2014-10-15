@@ -1,5 +1,6 @@
 class Cost < ActiveRecord::Base
   belongs_to :car, inverse_of: :costs
+  belongs_to :user
 
   def months
     time_horizon_in_years * 12
@@ -18,21 +19,19 @@ class Cost < ActiveRecord::Base
     total / (1 - (1 + (interest_rate_pct / 12)) ** ( - months))
   end
 
-
-  # def gas_expense(fuel_type_cost, fuel_capacity)
-  #   (fuel_type_cost * fuel_capacity) * 4
-  # end
-
   def net_present_value
     pv = down_payment
-    # # payment = (monthly_payment + gas_expense)
     num = 1
+    mileage = car.miles_per_month
+    payment = (monthly_payment + car.monthly_gas_expense + car.maintenance_timing(num, months))
     while num != months
-      months_pay = monthly_payment / (1 + (interest_rate_pct / 12)) ** num
+      months_pay = payment / (1 + (interest_rate_pct / 12)) ** num
       num += 1
       pv = pv + months_pay
     end
-
     pv
   end
 end
+
+
+
