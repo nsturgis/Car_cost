@@ -1,4 +1,5 @@
 class CostsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @car = Car.find(params[:car_id])
     @cost = Cost.new
@@ -7,23 +8,21 @@ class CostsController < ApplicationController
   def create
     @car = Car.find(params[:car_id])
     @cost = @car.costs.build(cost_params)
+    @cost.user = current_user
     if @cost.save
-      binding.pry
-      redirect_to @car
+      redirect_to car_path(@car)
     else
-      render 'cost/new'
+      render 'costs/new'
     end
   end
 
-  def index
-    @costs = Cost.all
-  end
-
-  def show
+  def destroy
     @car = Car.find(params[:car_id])
-    @cost = @car.costs.params[:id]
-  end
+    @cost = Cost.find(params[:id])
+    @cost.destroy
 
+    redirect_to car_path(@car)
+  end
 
 private
 

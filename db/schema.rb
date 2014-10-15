@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007220531) do
+ActiveRecord::Schema.define(version: 20141014144454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 20141007220531) do
     t.string   "nicename",      null: false
     t.integer  "year",          null: false
     t.integer  "style_id",      null: false
-    t.integer  "MPG",           null: false
     t.string   "fuel_type",     null: false
     t.integer  "price",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "fuel_capacity", null: false
+    t.integer  "mpg",           null: false
   end
 
   create_table "costs", force: true do |t|
@@ -38,6 +38,37 @@ ActiveRecord::Schema.define(version: 20141007220531) do
     t.integer  "time_horizon_in_years", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",               null: false
   end
+
+  create_table "maintenances", force: true do |t|
+    t.integer "car_id",           null: false
+    t.integer "maintenance_id",   null: false
+    t.float   "interval_mileage"
+    t.float   "interval_months"
+    t.integer "frequency",        null: false
+    t.float   "labor_units"
+    t.float   "part_units"
+    t.float   "cost_per_unit"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "zipcode",                             null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

@@ -1,7 +1,7 @@
 class CarsController < ApplicationController
 
   def index
-    @cars = Car.all
+    @cars = Car.search(params[:search]).order(:brand)
   end
 
   def show
@@ -9,4 +9,3 @@ class CarsController < ApplicationController
     @cost = @car.costs
   end
 end
-
