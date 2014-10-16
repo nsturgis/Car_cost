@@ -44,7 +44,7 @@ class Cost < ActiveRecord::Base
   end
 
   def local_dealers
-    dealers = HTTParty.get("http://api.edmunds.com/api/dealer/v2/dealers/?zipcode=#{user.zipcode}&radius=50&make=#{car.brand}&state=new&pageNum=1&pageSize=10&sortby=distance%3AASC&view=basic&api_key=fffw6c557sgk7vp27b9hsyhh")
+    dealers = HTTParty.get("http://api.edmunds.com/api/dealer/v2/dealers/?zipcode=#{user.zipcode}&radius=50&make=#{car.brand}&state=new&pageNum=1&pageSize=10&sortby=distance%3AASC&view=basic&api_key=#{ENV['EDMUNDS_API_KEY']}")
   end
 
 
