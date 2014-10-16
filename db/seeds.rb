@@ -69,4 +69,4 @@ maintenance = Maintenance.create([{car_id: 1, maintenance_id: 1057, interval_mil
 # Car.all.each do |car|
   # issue HTTP request to get car photo
   # save car photo url on car record
-end
+
