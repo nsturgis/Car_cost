@@ -14,6 +14,8 @@
 #       end
 #     end
 
+
+
 # car_results = HTTParty.get("...")
 
 # car_results.each do |result|
@@ -28,12 +30,12 @@
 # end
 
 
-car = Car.create([{brand_id: 1, brand: 'audi', model: 'A8', nicename: 'a8', year: 2014, style_id: 456, mpg: 23, fuel_type: 'Regular',fuel_capacity: 20, price: 23000},
-{brand_id: 2, brand: 'jeep', model: '5C', nicename: '5c', year: 2014, style_id: 459, mpg: 28, fuel_type: 'Midgrade', fuel_capacity: 25, price: 35000},
-{brand_id: 3, brand: 'acura', model: 'AX', nicename: 'ax', year: 2014, style_id: 458, mpg: 32, fuel_type: 'Premium', fuel_capacity: 17, price: 32000},
-{brand_id: 4, brand: 'toyota', model: 'T8', nicename: 't8', year: 2014, style_id: 455, mpg: 35, fuel_type: 'Premium', fuel_capacity: 22, price: 28000},
-{brand_id: 5, brand: 'honda', model: 'accord', nicename: 'accord', year: 2014, style_id: 453, mpg: 21, fuel_type: 'Midgrade', fuel_capacity: 28, price: 30000},
-{brand_id: 6, brand: 'bmw', model: '6 series', nicename: '6 series', year: 2014, style_id: 450, mpg: 18, fuel_type: 'diesel', fuel_capacity: 25, price: 29000}])
+car = Car.create([{brand: 'audi', model: 'A8', nicename: 'a8', year: 2014, style_id: 456, mpg: 23, fuel_type: 'Regular',fuel_capacity: 20, price: 23000},
+{brand: 'jeep', model: '5C', nicename: '5c', year: 2014, style_id: 459, mpg: 28, fuel_type: 'Midgrade', fuel_capacity: 25, price: 35000},
+{brand: 'acura', model: 'AX', nicename: 'ax', year: 2014, style_id: 458, mpg: 32, fuel_type: 'Premium', fuel_capacity: 17, price: 32000},
+{brand: 'toyota', model: 'T8', nicename: 't8', year: 2014, style_id: 455, mpg: 35, fuel_type: 'Premium', fuel_capacity: 22, price: 28000},
+{brand: 'honda', model: 'accord', nicename: 'accord', year: 2014, style_id: 453, mpg: 21, fuel_type: 'Midgrade', fuel_capacity: 28, price: 30000},
+{brand: 'bmw', model: '6 series', nicename: '6 series', year: 2014, style_id: 450, mpg: 18, fuel_type: 'diesel', fuel_capacity: 25, price: 29000}])
 
 maintenance = Maintenance.create([{car_id: 1, maintenance_id: 1057, interval_mileage: 15000, frequency: 4, labor_units: 2.0, part_units: 1.4, cost_per_unit: 8.0},
   {car_id: 2, maintenance_id: 1052, interval_months: 6, frequency: 2, labor_units: 0.0, part_units: 2.4, cost_per_unit: 10.0},
@@ -64,7 +66,7 @@ maintenance = Maintenance.create([{car_id: 1, maintenance_id: 1057, interval_mil
   # {car_id: 2, maintenance_id: 1064, interval_months: 4, frequency: 4, labor_units: 2.0, part_units: 1.4, cost_per_unit: 8.0},
   # {car_id: 2, maintenance_id: 1065, interval_mileage: 5000, frequency: 4, labor_units: 2.4, part_units: 0.0, cost_per_unit: 0.0}])
 
-Car.all.each do |car|
+# Car.all.each do |car|
   # issue HTTP request to get car photo
   # save car photo url on car record
 end
