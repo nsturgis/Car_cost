@@ -19,6 +19,17 @@ class Cost < ActiveRecord::Base
     total / (1 - (1 + (interest_rate_pct / 12)) ** ( - months))
   end
 
+  def maintenance_cost
+    num = 1
+    total_cost = 0
+      while num != months
+        car.maintenance_timing(num, months)
+        total_cost += car.maintenance_timing(num, months)
+        num += 1
+      end
+    total_cost
+  end
+
   def net_present_value
     pv = down_payment
     num = 1
