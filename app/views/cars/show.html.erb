@@ -12,14 +12,13 @@
   <thead>
     <tr>
       <th width="150">Total Cost of Purchase </th>
-      <th width="100">Down Payment</th>
-      <th width="100">Interest Rate</th>
-      <th width="100">Time Horizon In Years</th>
-      <th width="100">Monthly Car Payment</th>
-      <th width="100">Monthly Gas Cost</th>
-      <th width="100">Maintenance Costs </th>
-      <th width="100">Link to Local Dealership</th>
-      <th width="100">Delete Costs </th>
+      <th width="150">Down Payment</th>
+      <th width="150">Interest Rate</th>
+      <th width="150">Time Horizon In Years</th>
+      <th width="150">Monthly Car Payment</th>
+      <th width="150">Monthly Gas Cost</th>
+      <th width="150">Link to Local Dealership</th>
+      <th width="150">Delete Costs </th>
     </tr>
   </thead>
   <tbody>
@@ -31,7 +30,6 @@
       <td><%= money.time_horizon_in_years %></td>
       <td><%= number_to_currency(money.monthly_payment) %> </td>
       <td><%= number_to_currency(money.car.monthly_gas_expense) %></td>
-      <td>Blah Blah </td>
       <td><a href="#">Link to Local Dealer</a> </td>
       <td><%= link_to "Delete", car_cost_path(@car, money),
       method: :delete, data: { confirm: "Are your sure?" } %></td>

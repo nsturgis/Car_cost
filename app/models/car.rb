@@ -14,7 +14,8 @@ class Car < ActiveRecord::Base
 
   def gallon_cost
     gallon_dollas = 0
-    response = RestClient.get('https://www.kimonolabs.com/api/c6pgof8o?apikey=NHwsOdlwmdMfF5SgatHTXGGSD3y93Pb6')
+    response = Net::HTTP.get(URI("https://www.kimonolabs.com/api/c6pgof8o?apikey=#{ENV['KIMONO_API_KEY']}"))
+    # response = RestClient.get('http://www.kimonolabs.com/api/c6pgof8o?apikey=RAEf5sIjLGLOQhpQ314YMd0RaqtPqhHz')
     gas = JSON.parse(response)
     gas["results"]["collection1"].each do |row|
       if row["property11"] == fuel_type
