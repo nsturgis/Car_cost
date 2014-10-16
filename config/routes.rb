@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :cars, only: [:index, :show] do
-    resources :costs, only: [:new, :create, :destroy]
+    resources :costs, only: [:new, :create, :destroy, :show]
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

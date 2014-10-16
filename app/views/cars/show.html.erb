@@ -18,7 +18,7 @@
       <th width="125">Monthly Car Payment</th>
       <th width="125">Monthly Gas Cost</th>
       <th width="125">Maintenance Cost</th>
-      <th width="125">Link to Local Dealership</th>
+      <th width="125">List of Local Dealership</th>
       <th width="125">Delete Costs </th>
     </tr>
   </thead>
@@ -32,7 +32,7 @@
       <td><%= number_to_currency(money.monthly_payment) %> </td>
       <td><%= number_to_currency(money.car.monthly_gas_expense) %></td>
       <td><%= number_to_currency(money.maintenance_cost) %></td>
-      <td><a href="#">Link to Local Dealer</a> </td>
+      <td><%= link_to "List of Local Dealerships", car_cost_path(@car, money) %></td>
       <td><%= link_to "Delete", car_cost_path(@car, money),
       method: :delete, data: { confirm: "Are your sure?" } %></td>
     </tr>

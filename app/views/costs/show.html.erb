@@ -1,0 +1,14 @@
+<h1> List of Local Dealerships </h1>
+<ol>
+<% @cost.local_dealers["dealers"].each do |dealer| %>
+<li>
+  Dealership: <%= dealer["name"] %> <br>
+  Distance From You (in miles): <%= dealer["distance"] %><br>
+  Street: <%= dealer["address"]["street"] %><br>
+  City: <%= dealer["address"]["city"] %> <br>
+  State: <%= dealer["address"]["stateName"] %> <br>
+  Zipcode: <%= dealer["address"]["zipcode"] %> <br>
+</li>
+<% end %>
+</ol>
+
