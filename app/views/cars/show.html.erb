@@ -4,24 +4,43 @@
 <h4>Miles Per Gallon: <%= @car.mpg %>   </h4>
 <br>
 <br>
-
+<br>
+<% if user_signed_in? && @car.costs != [] %>
 <h2><%= link_to 'Find Costs', new_car_cost_path(@car) %> </h2>
-<% if user_signed_in? %>
 <h3> Costs: </h3>
-<% @car.costs.order(created_at: :desc).each do |money| %>
-<ul class="pricing-table">
-  <li class="title">Cars Cost</li>
-  <li class="Present Value of Purchase">Cost of Purchase: <%= number_to_currency(money.net_present_value) %></li>
-  <li class="down_payment">Down Payment: <%= money.down_payment %></li>
-  <li class="interest_rate">Interest Rate: <%= money.interest_rate %></li>
-  <li class="time_horizon_in_years"> Time Horizon In Years:  <%= money.time_horizon_in_years %></li>
-
-  <li class="monthly_car_payment"> Monthly Car Payment: <%= number_to_currency(money.monthly_payment) %> </li>
-   <li class="gas_expense">Monthly Gas Cost: <%= number_to_currency(money.car.monthly_gas_expense) %></li>
-  <li class="cta-button"><a class="button" href="#">Visit Dealership Website </a></li>
-  <%= link_to "Delete", car_cost_path(@car, money),
-      method: :delete, data: { confirm: "Are your sure?" } %>
-
-</ul>
+  <table>
+  <thead>
+    <tr>
+      <th width="150">Total Cost of Purchase </th>
+      <th width="100">Down Payment</th>
+      <th width="100">Interest Rate</th>
+      <th width="100">Time Horizon In Years</th>
+      <th width="100">Monthly Car Payment</th>
+      <th width="100">Monthly Gas Cost</th>
+      <th width="100">Maintenance Costs </th>
+      <th width="100">Link to Local Dealership</th>
+      <th width="100">Delete Costs </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @car.costs.order(created_at: :desc).each do |money| %>
+    <tr>
+      <td><strong><%= number_to_currency(money.net_present_value) %></strong></td>
+      <td><%= money.down_payment %></td>
+      <td><%= money.interest_rate %></td>
+      <td><%= money.time_horizon_in_years %></td>
+      <td><%= number_to_currency(money.monthly_payment) %> </td>
+      <td><%= number_to_currency(money.car.monthly_gas_expense) %></td>
+      <td>Blah Blah </td>
+      <td><a href="#">Link to Local Dealer</a> </td>
+      <td><%= link_to "Delete", car_cost_path(@car, money),
+      method: :delete, data: { confirm: "Are your sure?" } %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+<% else %>
+<h2><%= link_to 'Find Costs', new_car_cost_path(@car) %> </h2>
 <% end %>
-<% end %>
+<br>
+
