@@ -12,25 +12,27 @@
   <thead>
     <tr>
       <th width="150">Total Cost of Purchase </th>
-      <th width="150">Down Payment</th>
-      <th width="150">Interest Rate</th>
-      <th width="150">Time Horizon In Years</th>
-      <th width="150">Monthly Car Payment</th>
-      <th width="150">Monthly Gas Cost</th>
-      <th width="150">Link to Local Dealership</th>
-      <th width="150">Delete Costs </th>
+      <th width="125">Down Payment</th>
+      <th width="125">Interest Rate</th>
+      <th width="125">Time Horizon In Years</th>
+      <th width="125">Monthly Car Payment</th>
+      <th width="125">Monthly Gas Cost</th>
+      <th width="125">Maintenance Cost</th>
+      <th width="125">List of Local Dealership</th>
+      <th width="125">Delete Costs </th>
     </tr>
   </thead>
   <tbody>
   <% @car.costs.order(created_at: :desc).each do |money| %>
     <tr>
       <td><strong><%= number_to_currency(money.net_present_value) %></strong></td>
-      <td><%= money.down_payment %></td>
-      <td><%= money.interest_rate %></td>
+      <td><%= number_to_currency(money.down_payment) %></td>
+      <td><%= money.interest_rate %> %</td>
       <td><%= money.time_horizon_in_years %></td>
       <td><%= number_to_currency(money.monthly_payment) %> </td>
       <td><%= number_to_currency(money.car.monthly_gas_expense) %></td>
-      <td><a href="#">Link to Local Dealer</a> </td>
+      <td><%= number_to_currency(money.maintenance_cost) %></td>
+      <td><%= link_to "List of Local Dealerships", car_cost_path(@car, money) %></td>
       <td><%= link_to "Delete", car_cost_path(@car, money),
       method: :delete, data: { confirm: "Are your sure?" } %></td>
     </tr>

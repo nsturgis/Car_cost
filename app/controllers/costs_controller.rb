@@ -16,6 +16,11 @@ class CostsController < ApplicationController
     end
   end
 
+  def show
+    @car = Car.find(params[:car_id])
+    @cost = Cost.find(params[:id])
+  end
+
   def destroy
     @car = Car.find(params[:car_id])
     @cost = Cost.find(params[:id])
