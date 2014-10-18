@@ -13,10 +13,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require jquery.slick
 //= require_tree .
+$(function(){ $(document).foundation();
 
-$(function(){ $(document).foundation(); });
 
-$(document).ready(function(){
-  $('.bxslider').bxSlider();
 });
+
+// $(document).ready(function(){
+//   $('.bxslider').bxSlider();
+// });
+ $('.comments-container').on('click', '.comments-toggler', function(event) {
+      event.preventDefault();
+    $(this).siblings('.comment-list').toggleClass('comment-list--open');
+  });

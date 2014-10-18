@@ -3,6 +3,7 @@ class Car < ActiveRecord::Base
   has_many :costs, inverse_of: :car
   has_many :maintenances
   belongs_to :user
+  has_many :car_photos
 
   def self.search(search)
     if search
@@ -18,7 +19,9 @@ class Car < ActiveRecord::Base
     # response = RestClient.get('http://www.kimonolabs.com/api/c6pgof8o?apikey=RAEf5sIjLGLOQhpQ314YMd0RaqtPqhHz')
     gas = JSON.parse(response)
     gas["results"]["collection1"].each do |row|
-      if row["property11"] == fuel_type
+      if fuel_type == 'Diesel' && row["property11"] == "Diesel (On-Highway) - All Types"
+        gallon_dollas = row["property10"]
+      elsif row["property11"] == fuel_type
         gallon_dollas = row["property10"]
       end
     end
@@ -78,6 +81,9 @@ class Car < ActiveRecord::Base
     total_cost
   end
 
+  def consumer_notes
+    consumer_reviews = HTTParty.get("https://api.edmunds.com/api/vehiclereviews/v2/#{brand.downcase}/#{model.downcase}/#{year}?fmt=json&api_key=#{ENV['EDMUNDS_API_KEY']}")
+  end
 end
 
 

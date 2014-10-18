@@ -1,10 +1,14 @@
 <h1> All of Our Cars </h1>
-
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,700|Merriweather' rel='stylesheet' type='text/css'>
 <% @cars.each do |car| %>
-<div class="panel callout radius">
-<h4><%= link_to "#{car.brand},#{car.model} #{car.year}", car_path(car) %></h4>
+<div id="all">
+<div class="view view-first">
+  <%= image_tag car.car_photos.second.car_pic %>
+
+     <div class="mask">
+    <h4><%= "#{car.brand},#{car.model} #{car.year}" %></h4>
+     <p>View This Cars Details, Reviews, and Genreate Cost</p>
+     <%= link_to "Click Here", car_path(car), class: "info" %>
+     </div>
 </div>
 <% end %>
-
-
-google_maps_api_id=AIzaSyAQsC3_I68WVARJnN0oZJIvBYKHn9Z_RB4

@@ -1,12 +1,27 @@
 <h1> <%= @car.brand %>, <%= @car.model %>, <%= @car.year %> </h1>
-<h4>Price: <%= @car.price %> </h4>
+<h4>Price: <%= number_to_currency(@car.price) %> </h4>
 <h4>Fuel Type: <%= @car.fuel_type %> </h4>
 <h4>Miles Per Gallon: <%= @car.mpg %>   </h4>
 <br>
+<h5> Average Review of Car: <%= @car.consumer_notes["averageRating"] %> </h5>
+<% if @car.consumer_notes["reviews"] == nil %>
+<h6> Sorry There Are No Comments </h6>
+<% else %>
+<h6> Comments on Car: </h6>
+  <% if @car.consumer_notes["reviews"].present? %>
+    <% @car.consumer_notes["reviews"].each do |note| %>
+      <p>
+      <%= note["title"] %>: <br>
+      <%= note["text"] %>
+    </p>
+    <% end %>
+  <% end %>
+<% end %>
+<%= image_tag @car_photos.last.car_pic, style: "hieght:400px; width:400px;" %>
 <br>
 <br>
 <% if user_signed_in? && @car.costs != [] %>
-<h2><%= link_to 'Find Costs', new_car_cost_path(@car) %> </h2>
+<h2><%= link_to 'Find Costs', new_car_cost_path(@car), class: "button large alert" %> </h2>
 <h3> Costs: </h3>
   <table>
   <thead>
@@ -19,7 +34,7 @@
       <th width="125">Monthly Gas Cost</th>
       <th width="125">Maintenance Cost</th>
       <th width="125">List of Local Dealership</th>
-      <th width="125">Delete Costs </th>
+      <th width="125">Delete Cost </th>
     </tr>
   </thead>
   <tbody>
@@ -39,8 +54,8 @@
   </tbody>
   <% end %>
 </table>
+
 <% else %>
-<h2><%= link_to 'Find Costs', new_car_cost_path(@car) %> </h2>
-<% end %>
+<h2><%= link_to 'Find Costs', new_car_cost_path(@car), class: "button large alert" %> </h2><% end %>
 <br>
 

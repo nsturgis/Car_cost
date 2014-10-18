@@ -1,56 +1,19 @@
 <h1> Welcome to Car Cost </h1>
- <ul class="example-orbit" data-orbit>
-  <li>
-    <img src="http://www.hdwallpapersphoto.com/wallpapers/Lamborghini-Cars-HD-Wallpaper.jpg" alt="slide 1" />
-  </li>
-  <li>
-    <img src="http://www.gdwallpaper.com/wp-content/uploads/2014/10/car%20pictures%20hd-CZfQ.jpg" alt="slide 2" />
-  </li>
-  <li>
-    <img src="http://w8themes.com/wp-content/uploads/2014/03/Car-Wallpapers-61.jpg" alt="slide 3" />
-  </li>
-</ul>
 
-
-<div class="orbit-container">
-  <ul data-orbit class="example-orbit orbit-slides-container">
-    <li>
-      <img src="../assets/img/examples/satelite-orbit.jpg" alt="slide 1" />
-      <div class="orbit-caption">
-        Caption One.
-      </div>
-    </li>
-    <li>
-      <img src="../assets/img/examples/andromeda-orbit.jpg" alt="slide 1" />
-      <div class="orbit-caption">
-        Caption Two.
-      </div>
-    </li>
-    <li>
-      <img src="../assets/img/examples/launch-orbit.jpg" alt="slide 1" />
-      <div class="orbit-caption">
-        Caption Three.
-      </div>
-    </li>
-  </ul>
-
-  <!-- Navigation Arrows -->
-
-
-  <!-- Slide Numbers -->
-  <div class="orbit-slide-number">
-    <span>1</span> of <span>3</span>
-  </div>
-
-  <!-- Timer and Play/Pause Button -->
-  <div class="orbit-timer">
-    <span></span>
-    <div class="orbit-progress"></div>
-  </div>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,700|Merriweather' rel='stylesheet' type='text/css'>
+<% @cars.each do |car| %>
+<div id="all">
+<div class="view view-first">
+<%= image_tag car.car_photos.last.car_pic %>
+     <div class="mask">
+     <h2><%= car.brand %></h2>
+     <h5><strong>Models We Offer: </strong></h5>
+     <p><%= car.brand %>, <%= car.model %>, <%= car.year %></p>
+      <%= link_to "All Our #{car.brand}'s", "/cars?search=#{car.brand}", class: "info" %>
+         <!-- <a href="#" class="info">All of our <%=car.brand %>'s </a> -->
+     </div>
 </div>
-
-
-
-<%= link_to "All Cars", cars_path %>
+<% end %>
+</div>
 
 
