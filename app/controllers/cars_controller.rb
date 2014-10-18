@@ -7,5 +7,6 @@ class CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     @cost = @car.costs
+    @car_photos = @car.car_photos
   end
 end
