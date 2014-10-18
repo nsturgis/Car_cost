@@ -17,12 +17,7 @@
     <% end %>
   <% end %>
 <% end %>
-<%= image_tag(@car_photos.last.car_pic) %>
-
-<!-- <div class="car_pic"><%= image_tag(@car_photos.last.car_pic) %></div>
- -->
-
-
+<%= image_tag @car_photos.last.car_pic, style: "hieght:400px; width:400px;" %>
 <br>
 <br>
 <% if user_signed_in? && @car.costs != [] %>
@@ -39,7 +34,7 @@
       <th width="125">Monthly Gas Cost</th>
       <th width="125">Maintenance Cost</th>
       <th width="125">List of Local Dealership</th>
-      <th width="125">Delete Costs </th>
+      <th width="125">Delete Cost </th>
     </tr>
   </thead>
   <tbody>
@@ -59,6 +54,7 @@
   </tbody>
   <% end %>
 </table>
+
 <% else %>
 <h2><%= link_to 'Find Costs', new_car_cost_path(@car), class: "button large alert" %> </h2><% end %>
 <br>

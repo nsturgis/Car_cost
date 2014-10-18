@@ -1,17 +1,14 @@
-<script src="js/vendor/jquery.js"></script>
-<script src="js/foundation/foundation.js"></script>
-<script src="js/foundation/foundation.equalizer.js"></script>
-
 <h1> All of Our Cars </h1>
-<div class="row" data-equalizer>
-
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,700|Merriweather' rel='stylesheet' type='text/css'>
 <% @cars.each do |car| %>
-<div class="large-6 columns panel" data-equalizer-watch>
-<h4><%= link_to "#{car.brand},#{car.model} #{car.year}", car_path(car) %></h4>
-<br>
-<%= image_tag car.car_photos.last, height: 36, width: 24 %>
-<br>
-</div>
+<div id="all">
+<div class="view view-first">
+  <%= image_tag car.car_photos.second.car_pic %>
 
-<% end %>
+     <div class="mask">
+    <h4><%= "#{car.brand},#{car.model} #{car.year}" %></h4>
+     <p>View This Cars Details, Reviews, and Genreate Cost</p>
+     <%= link_to "Click Here", car_path(car), class: "info" %>
+     </div>
 </div>
+<% end %>
