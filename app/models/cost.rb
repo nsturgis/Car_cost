@@ -2,6 +2,10 @@ class Cost < ActiveRecord::Base
   belongs_to :car, inverse_of: :costs
   belongs_to :user
 
+  validates :down_payment, presence: true
+  validates :interest_rate, presence: true
+  validates :time_horizon_in_years, presence: true
+
   def months
     time_horizon_in_years * 12
   end

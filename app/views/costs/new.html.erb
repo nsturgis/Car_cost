@@ -1,5 +1,19 @@
 <h2> Find Costs: </h2>
 <%= form_for [@car, @cost] do |f| %>
+
+ <% if @cost.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@cost.errors.count, "error") %> prohibited
+      this article from being saved:</h2>
+
+    <ul>
+      <% @cost.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
 <p>
 <%= f.label :down_payment %>
 <%= f.text_field :down_payment %><br>

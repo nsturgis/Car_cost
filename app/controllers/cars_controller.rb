@@ -8,5 +8,6 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
     @cost = @car.costs
     @car_photos = @car.car_photos
+    @car_reviews = @car.car_reviews
   end
 end
