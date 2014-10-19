@@ -4,6 +4,7 @@ class Car < ActiveRecord::Base
   has_many :maintenances
   belongs_to :user
   has_many :car_photos
+  has_many :car_reviews
 
   def self.search(search)
     if search

@@ -3,20 +3,19 @@
 <h4>Fuel Type: <%= @car.fuel_type %> </h4>
 <h4>Miles Per Gallon: <%= @car.mpg %>   </h4>
 <br>
-<h5> Average Review of Car: <%= @car.consumer_notes["averageRating"] %> </h5>
-<% if @car.consumer_notes["reviews"] == nil %>
-<h6> Sorry There Are No Comments </h6>
+<% if @car_reviews == [] %>
+  <h6> Sorry There Are No Reviews!!! </h6>
 <% else %>
-<h6> Comments on Car: </h6>
-  <% if @car.consumer_notes["reviews"].present? %>
-    <% @car.consumer_notes["reviews"].each do |note| %>
+  <h5> Average Review of Car: <%= @car_reviews[0].rating %> </h5>
+  <br>
+  <h6> Comments on Car: </h6>
+    <% @car_reviews.each do |note| %>
       <p>
-      <%= note["title"] %>: <br>
-      <%= note["text"] %>
-    </p>
+      <%= note.title %>: <br>
+      <%= note.comment %>
+      </p>
     <% end %>
   <% end %>
-<% end %>
 <%= image_tag @car_photos.last.car_pic, style: "hieght:400px; width:400px;" %>
 <br>
 <br>
