@@ -23,22 +23,22 @@ class Cost < ActiveRecord::Base
     total / (1 - (1 + (interest_rate_pct / 12)) ** ( - months))
   end
 
-  def maintenance_cost
+  def maintenance_cost(user)
     num = 1
     total_cost = 0
-      while num != months
-        car.maintenance_timing(num, months)
-        total_cost += car.maintenance_timing(num, months)
-        num += 1
-      end
-    total_cost
+    while num != months
+      car.maintenance_timing(num, months, user)
+      total_cost += car.maintenance_timing(num, months, user)
+      num += 1
+    end
+  total_cost
   end
 
-  def net_present_value
+  def net_present_value(user)
     pv = down_payment
     num = 1
     mileage = car.miles_per_month
-    payment = (monthly_payment + car.monthly_gas_expense + car.maintenance_timing(num, months))
+    payment = (monthly_payment + car.monthly_gas_expense + car.maintenance_timing(num, months, user))
     while num != months
       months_pay = payment / (1 + (interest_rate_pct / 12)) ** num
       num += 1

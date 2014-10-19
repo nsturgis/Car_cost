@@ -9,6 +9,10 @@
   City: <%= dealer["address"]["city"] %> <br>
   State: <%= dealer["address"]["stateName"] %> <br>
   Zipcode: <%= dealer["address"]["zipcode"] %> <br>
+  <% if dealer["contactInfo"] != nil %>
+  Phone Number: <%= dealer["contactInfo"]["phone"] %><br>
+  Website: <%=link_to "#{dealer["name"]}", "#{dealer["contactInfo"]["website"]}" %><br>
+  <% end %>
 </li>
 </div>
 <% end %>
