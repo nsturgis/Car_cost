@@ -121,6 +121,7 @@ Car.all.each do |c|
     consumer_reviews["reviews"].to_a.each do |review|
       CarReview.create(car_id: c["id"], rating: consumer_reviews["averageRating"], title: review["title"], comment: review["text"])
     end
+  end
 end
 # Car.all.each do |car|
   # issue HTTP request to get car photo
