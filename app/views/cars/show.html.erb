@@ -61,10 +61,14 @@
 <br>
 
 <% if user_signed_in? && @car.costs != [] %>
+<div class= "large-6 columns">
 <h2><%= link_to 'Find Costs', new_car_cost_path(@car), class: "button large alert" %> </h2>
 <h2><%= link_to "List of Local Dealerships", car_cost_path(@car, @cost.first), class: "button" %> </h2>
+</div>
+<div class= "large-12 columns">
 <div class='panel cost transparent'>
 <h3><strong> Costs: </strong></h3>
+  </div>
   </div>
   <table>
   <thead>
