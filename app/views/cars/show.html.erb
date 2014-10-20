@@ -1,49 +1,68 @@
 <h1> <%= @car.brand %>, <%= @car.model %>, <%= @car.year %> </h1>
-<h4>Price: <%= number_to_currency(@car.price) %> </h4>
-<h4>Fuel Type: <%= @car.fuel_type %> </h4>
-<h4>Miles Per Gallon: <%= @car.mpg %>   </h4>
-<h4>Fuel Capacity(in gallons): <%= @car.fuel_capacity %></h4>
-<br>
-
-<% @car_photos.each do |pic| %>
-
-<div class='multiple-items'>
-  <div><%= image_tag pic.car_pic %></div>
-</div>
-<% end %>
-<br>
-<br>
-
-<a href="#" data-reveal-id="firstModal" class="radius button">See Ratings/Reviews </a>
-<div id="firstModal" class="reveal-modal" data-reveal>
-  <h2> <%= "#{@car.brand} ,  #{@car.model} , #{@car.year}"  %> </h2>
-  <% if @car_reviews == [] %>
-  <h6> Sorry There Are No Reviews!!! </h6>
-<% else %>
-  <h5> Average Rating of Car: <%= @car_reviews[0].rating %> </h5>
-  <br>
-  <h6> Review on the Car: </h6>
-    <h7><%= @car_reviews.first.title %>:</h7>
+<div class='panel overflow transparent'>
+  <div class="profile-container">
+  <div class="large-6 columns">
+    <h4>Price: <%= number_to_currency(@car.price) %> </h4>
+    <h4>Fuel Type: <%= @car.fuel_type %> </h4>
+    <h4>Miles Per Gallon: <%= @car.mpg %>   </h4>
+    <h4>Fuel Capacity(in gallons): <%= @car.fuel_capacity %></h4>
     <br>
     <br>
-    <p><%= @car_reviews.first.comment %></p>
-  <p><a href="#" data-reveal-id="secondModal" class="secondary button"> All Reviews </a></p>
-  <a class="close-reveal-modal">&#215;</a>
+    <a href="#" data-reveal-id="firstModal" class="radius button">See Ratings/Reviews </a>
+    <div id="firstModal" class="reveal-modal" data-reveal>
+      <h2> <%= "#{@car.brand} ,  #{@car.model} , #{@car.year}"  %> </h2>
+      <% if @car_reviews == [] %>
+      <h6> Sorry There Are No Reviews!!! </h6>
+    <% else %>
+      <h5> Average Rating of Car: <%= @car_reviews[0].rating %> </h5>
+      <br>
+      <h6> Review on the Car: </h6>
+        <h7><%= @car_reviews.first.title %>:</h7>
+        <br>
+        <br>
+        <p><%= @car_reviews.first.comment %></p>
+      <p><a href="#" data-reveal-id="secondModal" class="secondary button"> All Reviews </a></p>
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
+
+    <div id="secondModal" class="reveal-modal" data-reveal>
+      <h2>All Reviews: </h2>
+        <% @car_reviews.each do |note| %>
+          <h7><%= note.title %> </h7>
+          <p><%= note.comment %></p>
+      <a class="close-reveal-modal">&#215;</a>
+    <% end %>
+    <% end %>
+  </div>
+  </div>
+
+
+<div class="large-2 columns">
+
+<%= link_to image_tag(@car_photos[0].car_pic, size: "800x800") , @car_photos[0].car_pic %><br><br>
+<%= link_to image_tag(@car_photos[1].car_pic, size: "800x800") , @car_photos[1].car_pic %>
+</div>
+<div class="large-2 columns">
+<%= link_to image_tag(@car_photos[2].car_pic, size: "800x800") , @car_photos[2].car_pic %><br><br>
+<%= link_to image_tag(@car_photos[3].car_pic, size: "800x800") , @car_photos[3].car_pic %>
 </div>
 
-<div id="secondModal" class="reveal-modal" data-reveal>
-  <h2>All Reviews: </h2>
-    <% @car_reviews.each do |note| %>
-      <h7><%= note.title %> </h7>
-      <p><%= note.comment %></p>
-  <a class="close-reveal-modal">&#215;</a>
-<% end %>
-<% end %>
+</ul>
+
+  <!-- <div class="photos-container"> -->
 </div>
+  <!-- </div> -->
+</div>
+
+
+</div>
+<br>
 
 <% if user_signed_in? && @car.costs != [] %>
 <h2><%= link_to 'Find Costs', new_car_cost_path(@car), class: "button large alert" %> </h2>
-<h> Costs: </h3>
+<div class='panel overflow transparent'>
+<h3> Costs: </h3>
+  </div>
   <table>
   <thead>
     <tr>
@@ -77,6 +96,7 @@
 </table>
 
 <% else %>
-<h2><%= link_to 'Find Costs', new_car_cost_path(@car), class: "button large alert" %> </h2><% end %>
-<br>
+<h2><%= link_to 'Find Costs', new_car_cost_path(@car), class: "button large alert" %> </h2>
+<% end %>
+
 

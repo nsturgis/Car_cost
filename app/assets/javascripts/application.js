@@ -15,6 +15,7 @@
 //= require foundation
 //= require jquery.slick
 //= require_tree .
+//= require slick
 $(function(){
   $(document).foundation();
 

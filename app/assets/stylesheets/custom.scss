@@ -19,6 +19,34 @@ h4 {
   color: #000080;
 }
 
+h3 {
+  color: #000080;
+}
+
+.transparent {
+  opacity: 0.9;
+}
+
+.large-2 {
+width: 16.66667%;
+float: right;
+}
+
+
+.profile-container {
+  float: left;
+  overflow: auto;
+}
+
+.photos-container {
+  float: left;
+  /*padding-left: 5%;*/
+  overflow: auto;
+}
+
+.overflow {
+  overflow: auto;
+}
 .search-button {
    border-top: 1px solid #96d1f8;
    background: #65a9d7;
@@ -59,13 +87,24 @@ h4 {
 
 }
 
+.button.radius {
+  border-radius: 40px;
+}
+
+.panel {
+  border-radius: 25px;
+}
+
+.reveal-modal {
+  float: right;
+}
 
 html {
   min-height: 100%;
 }
 
 body {
-  background: url('http://www.4khdwallpapers.com/wp-content/uploads/2014/05/textured-wallpaper-backgrounds-3.jpg') no-repeat center center fixed;
+  background: url('http://bigbackground.com/wp-content/uploads/2013/05/desert-road-background.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
  -moz-background-size: cover;
  -o-background-size: cover;
