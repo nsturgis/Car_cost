@@ -116,7 +116,7 @@ picture_attrs.each do |picture|
 end
 
 Car.all.each do |c|
-    if c["brand"] != "BMW"
+    unless c["brand"] == "BMW"
   consumer_reviews = HTTParty.get("https://api.edmunds.com/api/vehiclereviews/v2/#{c["brand"].downcase}/#{c["model"].downcase}/#{c["year"]}?fmt=json&api_key=#{ENV['EDMUNDS_API_KEY']}")
     consumer_reviews["reviews"].to_a.each do |review|
       CarReview.create(car_id: c["id"], rating: consumer_reviews["averageRating"], title: review["title"], comment: review["text"])
