@@ -1,9 +1,9 @@
 <h1> List of Local Dealerships </h1>
 
 <% @cost.local_dealers["dealers"].each do |dealer| %>
-<div class="panel callout radius">
-<li>
-  Dealership: <%= dealer["name"] %> <br>
+<div class="panel callout radius transparent">
+<div>
+  Dealership:<strong> <%= dealer["name"] %></strong> <br>
   Distance From You (in miles):  <%= sprintf("%.2f", dealer["distance"]) %><br>
   Street: <%= dealer["address"]["street"] %><br>
   City: <%= dealer["address"]["city"] %> <br>
@@ -13,7 +13,7 @@
   Phone Number: <%= dealer["contactInfo"]["phone"] %><br>
   Website: <%=link_to "#{dealer["name"]}", "#{dealer["contactInfo"]["website"]}" %><br>
   <% end %>
-</li>
+</div>
 </div>
 <% end %>
 
