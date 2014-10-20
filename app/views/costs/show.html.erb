@@ -1,15 +1,20 @@
+<div class= "panel transparent">
 <h1> List of Local Dealerships </h1>
-
+</div>
 <% @cost.local_dealers["dealers"].each do |dealer| %>
-<div class="panel callout radius">
-<li>
-  Dealership: <%= dealer["name"] %> <br>
+<div class="panel callout radius transparent">
+<div>
+  Dealership:<strong> <%= dealer["name"] %></strong> <br>
   Distance From You (in miles):  <%= sprintf("%.2f", dealer["distance"]) %><br>
   Street: <%= dealer["address"]["street"] %><br>
   City: <%= dealer["address"]["city"] %> <br>
   State: <%= dealer["address"]["stateName"] %> <br>
   Zipcode: <%= dealer["address"]["zipcode"] %> <br>
-</li>
+  <% if dealer["contactInfo"] != nil %>
+  Phone Number: <%= dealer["contactInfo"]["phone"] %><br>
+  Website: <%=link_to "#{dealer["name"]}", "#{dealer["contactInfo"]["website"]}" %><br>
+  <% end %>
+</div>
 </div>
 <% end %>
 

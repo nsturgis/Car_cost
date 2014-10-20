@@ -1,9 +1,10 @@
-<h1> Welcome to Car Cost </h1>
-
-<link href='http://fonts.googleapis.com/css?family=Raleway:400,700|Merriweather' rel='stylesheet' type='text/css'>
+<div class= "panel transparent">
+<h1><strong> Welcome to Car Cost </strong></h1>
+</div>
 <% @cars.each do |car| %>
 <div id="all">
 <div class="view view-first">
+
 <%= image_tag car.car_photos.last.car_pic %>
      <div class="mask">
      <h2><%= car.brand %></h2>

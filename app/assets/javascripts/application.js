@@ -15,15 +15,13 @@
 //= require foundation
 //= require jquery.slick
 //= require_tree .
-$(function(){ $(document).foundation();
+//= require slick
+$(function(){
+  $(document).foundation();
 
-
+$('.multiple-items').slick({
+  infinite: true,
+  slidesToShow: 3,
+  slidesToScroll: 3
 });
-
-// $(document).ready(function(){
-//   $('.bxslider').bxSlider();
-// });
- $('.comments-container').on('click', '.comments-toggler', function(event) {
-      event.preventDefault();
-    $(this).siblings('.comment-list').toggleClass('comment-list--open');
-  });
+});
