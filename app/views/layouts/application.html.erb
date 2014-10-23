@@ -13,31 +13,31 @@
     <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><strong><%= link_to "Home", root_path %></strong></h1>
+    <h1><strong><%= link_to "Home", root_path %></strong></h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
 
   <section class="top-bar-section">
     <ul class="right">
-      <% if user_signed_in? %>
-        <li class="has-dropdown">
-        <a href="#"><%= current_user.email%></a>
-        <ul class="dropdown">
-        <li>
-        <%= link_to "Sign out", destroy_user_session_path, data: {method: 'delete'} %>
-        </li>
-        <li>
-        <%= link_to "Edit Account Information", edit_user_registration_path %>
-        </li>
-        <% else %>
-        <li class="has-dropdown">
-        <a href="#"> User </a>
-        <ul class="dropdown">
-        <li><%= link_to "Sign In", new_user_session_path %></li>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <% end %>
-        </ul>
+    <% if user_signed_in? %>
+      <li class="has-dropdown">
+      <a href="#"><%= current_user.email%></a>
+      <ul class="dropdown">
+      <li>
+      <%= link_to "Sign out", destroy_user_session_path, data: {method: 'delete'} %>
+      </li>
+      <li>
+      <%= link_to "Edit Account Information", edit_user_registration_path %>
+      </li>
+      <% else %>
+      <li class="has-dropdown">
+      <a href="#"> User </a>
+      <ul class="dropdown">
+      <li><%= link_to "Sign In", new_user_session_path %></li>
+      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+      <% end %>
+      </ul>
       </li>
     </ul>
 
