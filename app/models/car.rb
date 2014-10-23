@@ -43,15 +43,6 @@ class Car < ActiveRecord::Base
     cost_per_tank * fill_up_frequency
   end
 
-  # def maintenance_timing(month, total_months)
-  #   total_cost = 0
-  #   maintenances.each do |maintenance|
-  #     if maintenance.applies?(month, total_months)
-  #       total_cost += maintenance.total_maintenance_cost
-  #     end
-  #   end
-  #   total_cost
-  # end
 
   def maintenance_timing(month, total_months, user)
     total_cost = 0
@@ -59,13 +50,12 @@ class Car < ActiveRecord::Base
 
     maintenances.each do |work|
       case
-      when work.frequency == 1 && month == 12 # annual checkup
+      when work.frequency == 1 && month == 12
         total_cost += work.total_maintenance_cost(user)
-      when work.frequency == 2 && month >= 24 && month % 12 == 0 # subsequent annual checkups
+      when work.frequency == 2 && month >= 24 && month % 12 == 0
         total_cost += work.total_maintenance_cost(user)
       when work.frequency == 3 && (mileage >= work.interval_mileage || month == work.interval_months)
         total_cost += work.total_maintenance_cost(user)
-        # work.interval_mileage += work.interval_mileage
       when work.frequency == 4 && work.interval_maintenance(month, miles_per_month)
         total_cost += work.total_maintenance_cost(user)
       when work.frequency == 5 && month % 6 == 0
