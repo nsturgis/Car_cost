@@ -2,18 +2,18 @@
 <h1><strong> Welcome to Car Cost </strong></h1>
 </div>
 <% @cars.each do |car| %>
-<div id="all">
-<div class="view view-first">
+  <div id="all">
+  <div class="view view-first">
 
-<%= image_tag car.car_photos.last.car_pic %>
-     <div class="mask">
-     <h2><%= car.brand %></h2>
-     <h5><strong>Models We Offer: </strong></h5>
-     <p><%= car.brand %>, <%= car.model %>, <%= car.year %></p>
-      <%= link_to "All Our #{car.brand}'s", "/cars?search=#{car.brand}", class: "info" %>
+  <%= image_tag car.car_photos.last.car_pic %>
+  <div class="mask">
+  <h2><%= car.brand %></h2>
+  <h5><strong>Models We Offer: </strong></h5>
+  <p><%= car.brand %>, <%= car.model %>, <%= car.year %></p>
+  <%= link_to "All Our #{car.brand}'s", "/cars?search=#{car.brand}", class: "info" %>
          <!-- <a href="#" class="info">All of our <%=car.brand %>'s </a> -->
-     </div>
-</div>
+  </div>
+  </div>
 <% end %>
 </div>
 

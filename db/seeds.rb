@@ -1,33 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-# require 'httparty'
-#   results = HTTParty.get('https://api.edmunds.com/api/vehicle/v2/makes?state=new&year=2014&view=basic&fmt=json&api_key=fffw6c557sgk7vp27b9hsyhh')
-#   makes = results["makes"]
-#     makes.each do |brand|
-#       brand["models"].each do |car|
-#         car = Car.create(brand: car["id"], model: car["name"], nicename: car["niceName"], year: car["years"][0]["year"])
-#       end
-#     end
-
-
-
-# car_results = HTTParty.get("...")
-
-# car_results.each do |result|
-#   car_attrs = {
-#     brand: result["brand"],
-#     model: result["model"],
-#   }
-#   car = Car.find_or_create_by(car_attrs)
-
-#   maintenance_results = HTTParty.get("...")
-#   car_photo = HTTParty.get("...")
-# end
 
 cars_attrs = [
   {brand: 'Audi', model: 'A8', nicename: 'a8', year: 2014, style_id: 200480475, mpg: 23, fuel_type: 'Regular',fuel_capacity: 20, price: 30000},
@@ -77,13 +47,6 @@ maintenance_attrs.each do |maintenance|
   Maintenance.find_or_create_by(maintenance)
 end
 
-# Car.all.each do |car|
-#   photos = HTTParty.get("https://api.edmunds.com/v1/api/vehiclephoto/service/findphotosbystyleid?styleId=#{car[:style_id]}&fmt=json&api_key=#{ENV['EDMUNDS_API_KEY']}")
-
-#   photos[0]["photoSrcs"].to_a.each do |pic|
-#     CarPhoto.find_or_create_by(car: car, car_pic: "http://media.ed.edmunds-media.com" + pic)
-#   end
-# end
 
 picture_attrs = [
 {car_id: 1, car_pic: "http://images.caricos.com/a/audi/2014_audi_a8/images/1920x1080/2014_audi_a8_1_1920x1080.jpg"},
@@ -116,14 +79,10 @@ picture_attrs.each do |picture|
 end
 
 Car.all.each do |c|
-    unless c["brand"] == "BMW"
   consumer_reviews = HTTParty.get("https://api.edmunds.com/api/vehiclereviews/v2/#{c["brand"].downcase}/#{c["model"].downcase}/#{c["year"]}?fmt=json&api_key=#{ENV['EDMUNDS_API_KEY']}")
     consumer_reviews["reviews"].to_a.each do |review|
       CarReview.create(car_id: c["id"], rating: consumer_reviews["averageRating"], title: review["title"], comment: review["text"])
-    end
   end
 end
-# Car.all.each do |car|
-  # issue HTTP request to get car photo
-  # save car photo url on car record
+
 
