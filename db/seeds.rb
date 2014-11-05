@@ -5,7 +5,7 @@ cars_attrs = [
   {brand: 'Acura', model: 'MDX', nicename: 'mdx', year: 2014, style_id: 200476885, mpg: 32, fuel_type: 'Premium', fuel_capacity: 17, price: 32000},
   {brand: 'Toyota', model: 'Prius-C', nicename: 'prius-c', year: 2014, style_id: 200496064, mpg: 35, fuel_type: 'Premium', fuel_capacity: 22, price: 26000},
   {brand: 'Honda', model: 'Accord', nicename: 'accord', year: 2014, style_id: 200487199, mpg: 21, fuel_type: 'Midgrade', fuel_capacity: 28, price: 28000},
-  {brand: 'BMW', model: '6-Series', nicename: '6-series', year: 2014, style_id: 200470634, mpg: 18, fuel_type: 'Diesel', fuel_capacity: 25, price: 31000}
+  {brand: 'BMW', model: 'ALPINA-B7', nicename: 'alpina-b7', year: 2014, style_id: 200470634, mpg: 18, fuel_type: 'Diesel', fuel_capacity: 25, price: 31000}
 ]
 
 cars_attrs.each do |car_attrs|
@@ -79,7 +79,7 @@ picture_attrs.each do |picture|
 end
 
 Car.all.each do |c|
-  consumer_reviews = HTTParty.get("https://api.edmunds.com/api/vehiclereviews/v2/#{c["brand"].downcase}/#{c["model"].downcase}/#{c["year"]}?fmt=json&api_key=#{ENV['EDMUNDS_API_KEY']}")
+  consumer_reviews = HTTParty.get("https://api.edmunds.com/api/vehiclereviews/v2/#{c["brand"].downcase}/#{c["nicename"]}/#{c["year"]}?fmt=json&api_key=#{ENV['EDMUNDS_API_KEY']}")
     consumer_reviews["reviews"].to_a.each do |review|
       CarReview.create(car_id: c["id"], rating: consumer_reviews["averageRating"], title: review["title"], comment: review["text"])
   end
